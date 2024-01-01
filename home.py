@@ -6,7 +6,12 @@ import ssl
 import smtplib
 from llama_hub.youtube_transcript import YoutubeTranscriptReader
 from transformers import pipeline
-!pip install datasets llama_hub llama_index youtube_transcript_api
+#!pip install datasets llama_hub llama_index youtube_transcript_api
+
+import subprocess
+
+subprocess.run(["pip", "install", "datasets", "llama_hub", "llama_index", "youtube_transcript_api"])
+
 
 def upload_file():
   uploaded_file = st.file_uploader("Choose a file")
