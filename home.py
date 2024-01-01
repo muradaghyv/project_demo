@@ -68,10 +68,18 @@ def main():
 
       context = ssl.create_default_context()
 
-      with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
+      try:
+          with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+              smtp.login(email_sender, email_password)
+              smtp.sendmail(email_sender, email_receiver, em.as_string())
+          st.write("Email sent successfully!")
+      except Exception as e:
+          st.error(f"Error sending email: {str(e)}")
+      
+      """with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_receiver, em.as_string())
-        st.write("Email sent successfully!")
+        st.write("Email sent successfully!")"""
 
 
 if __name__ == "__main__":
