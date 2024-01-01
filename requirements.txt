@@ -2,7 +2,6 @@ streamlit
 llama_hub
 llama_index
 youtube_transcript_api
-email.message
 ssl
 smptplib
 transformers
