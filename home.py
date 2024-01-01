@@ -51,7 +51,7 @@ def main():
     option = st.selectbox("Options", ["Show transcription", "Send summary text"])
 
     if option == "Show transcription":
-      st.write(documents)
+      st.write(var2)
     elif option == "Send summary text":
       email_sender = 'agayev.m2002@gmail.com'
       email_password = 'aaku gufo lswj ekqx'
