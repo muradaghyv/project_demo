@@ -15,6 +15,14 @@ subprocess.run(["pip", "install", "datasets", "llama_hub", "llama_index", "youtu
 
 def upload_file():
   uploaded_file = st.file_uploader("Choose a file")
+  from youtube_transcript_api import TranscriptsDisabled
+
+  try:
+      transcripts = YouTubeTranscriptApi.get_transcript(video_id)
+  except TranscriptsDisabled:
+      print(f"Transcripts are disabled for the video with ID: {video_id}")
+      transcripts = []
+    
   if uploaded_file is not None:
     # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
