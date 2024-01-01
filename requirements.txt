@@ -3,3 +3,4 @@ llama_hub
 llama_index
 youtube_transcript_api
 transformers
+tensorflow
