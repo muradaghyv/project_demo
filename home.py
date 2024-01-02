@@ -55,8 +55,8 @@ def main():
     st.write('Choose an option:')
     option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
     if option == 'Show transcription':
-        #st.write(var2)
-      st.write('Hello')
+      st.write(var2)
+      #st.write('Hello')
     elif option == 'Send summary text':
       email_sender = 'agayev.m2002@gmail.com'
       email_password = 'aaku gufo lswj ekqx'
@@ -73,19 +73,19 @@ def main():
   
       context = ssl.create_default_context()
   
-      """try:
+      try:
           with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
               smtp.set_debuglevel(1)  # Enable SMTP debugging
               smtp.login(email_sender, email_password)
               smtp.sendmail(email_sender, email_receiver, em.as_string())
           st.write("Email sent successfully!")
       except Exception as e:
-          st.error(f"Error sending email: {str(e)}")"""
+          st.error(f"Error sending email: {str(e)}")
         
-      with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
+      """with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_receiver, em.as_string())
-        st.write("Email sent successfully!")
+        st.write("Email sent successfully!")"""
     else:
       st.write('Transcribe first!')
 
