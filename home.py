@@ -90,10 +90,10 @@ def main():
     # Show transcription or send summary text
 
         
-      """with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
-        smtp.login(email_sender, email_password)
-        smtp.sendmail(email_sender, email_receiver, em.as_string())
-        st.write("Email sent successfully!")"""
+      #with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
+        #smtp.login(email_sender, email_password)
+        #smtp.sendmail(email_sender, email_receiver, em.as_string())
+        #st.write("Email sent successfully!")
     #else:
       #st.write('Transcribe first!')
 
