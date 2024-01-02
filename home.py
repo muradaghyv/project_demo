@@ -53,7 +53,8 @@ def main():
     txt_sum = var2.split('\\n')
       
     if option == 'Show transcription':
-      st.write(var2)
+      #st.write(var2)
+      st.write('Hello')
     elif option == 'Send summary text':
       email_sender = 'agayev.m2002@gmail.com'
       email_password = 'aaku gufo lswj ekqx'
