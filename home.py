@@ -6,7 +6,6 @@ import ssl
 import smtplib
 from llama_hub.youtube_transcript import YoutubeTranscriptReader
 from transformers import pipeline
-#!pip install datasets llama_hub llama_index youtube_transcript_api
 
 import subprocess
 
@@ -38,6 +37,12 @@ def main():
 
   # Transcribe YouTube video
   if st.button("Transcribe"):
+    progress_text = 'Transcibing . . .'
+    my_bar = st.sidebar.progress(0, text = progress_text)
+    for percent_complete in range(100):
+      time.sleep(0.01)
+      my_bar.progress(percent_complete+1, text = progress_text)
+    my_bar.empty()
     loader = YoutubeTranscriptReader()
     documents = loader.load_data(ytlinks=[youtube_link])
     var = str(documents).split('text')
@@ -46,12 +51,8 @@ def main():
     t = summarizer(var2, max_length=230, min_length=30, do_sample=False)
     summary_text = t[0]['summary_text']
     txt_sum = var2.split('\\n')
-
-    st.session_state['summary'] = summary_text
-    st.session_state['transcription'] = var2
-  
-  if 'transcription' in st.session_state:
-    # Show transcription or send summary text
+    st.success('Trancription and summarization is done!')
+    
     st.write('Choose an option:')
     option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
     if option == 'Show transcription':
@@ -81,13 +82,20 @@ def main():
           st.write("Email sent successfully!")
       except Exception as e:
           st.error(f"Error sending email: {str(e)}")
+
+    #st.session_state['summary'] = summary_text
+    #st.session_state['transcription'] = var2
+  
+  #if 'transcription' in st.session_state:
+    # Show transcription or send summary text
+
         
       """with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_receiver, em.as_string())
         st.write("Email sent successfully!")"""
-    else:
-      st.write('Transcribe first!')
+    #else:
+      #st.write('Transcribe first!')
 
 
 if __name__ == "__main__":
