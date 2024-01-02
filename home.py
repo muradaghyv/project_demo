@@ -26,7 +26,7 @@ def upload_file():
   if uploaded_file is not None:
     # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
-    return bytes_data
+  return bytes_data
 
 
 def main():
@@ -50,7 +50,6 @@ def main():
     st.session_state['summary'] = summary_text
     st.session_state['transciption'] = var2
   
-def transcribing():
   if 'transcription' in st.session_state:
     # Show transcription or send summary text
     st.write('Choose an option:')
