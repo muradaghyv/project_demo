@@ -53,13 +53,13 @@ def main():
     summary_text = t[0]['summary_text']
     txt_sum = var2.split('\\n')
     st.success('Trancription and summarization is done!')
-    
-
 
     st.session_state['summary'] = summary_text
     st.session_state['transcription'] = var2
   
   if 'transcription' in st.session_state:
+    var2 = st.session_state['transcription']
+    summary_text = st.session_state['summary']
     st.write('Choose an option:')
     option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
     if option == 'Show transcription':
