@@ -48,7 +48,7 @@ def main():
     txt_sum = var2.split('\\n')
 
     st.session_state['summary'] = summary_text
-    st.session_state['transciption'] = var2
+    st.session_state['transcription'] = var2
   
   if 'transcription' in st.session_state:
     # Show transcription or send summary text
