@@ -58,36 +58,36 @@ def main():
   if 'transcription' in st.session_state:
     if option == 'Show transcription':
         #st.write(var2)
-        st.write('Hello')
+      st.write('Hello')
     elif option == 'Send summary text':
-        email_sender = 'agayev.m2002@gmail.com'
-        email_password = 'aaku gufo lswj ekqx'
-        email_receiver = 'murad.02.mm@gmail.com'
-    
-        subject = 'Youtube Transcription'
-        body = summary_text
-    
-        em = EmailMessage()
-        em['From'] = email_sender
-        em['To'] = email_receiver
-        em['Subject'] = subject
-        em.set_content(body)
-    
-        context = ssl.create_default_context()
-    
-        """try:
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-                smtp.set_debuglevel(1)  # Enable SMTP debugging
-                smtp.login(email_sender, email_password)
-                smtp.sendmail(email_sender, email_receiver, em.as_string())
-            st.write("Email sent successfully!")
-        except Exception as e:
-            st.error(f"Error sending email: {str(e)}")"""
-          
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
-          smtp.login(email_sender, email_password)
-          smtp.sendmail(email_sender, email_receiver, em.as_string())
+      email_sender = 'agayev.m2002@gmail.com'
+      email_password = 'aaku gufo lswj ekqx'
+      email_receiver = 'murad.02.mm@gmail.com'
+  
+      subject = 'Youtube Transcription'
+      body = summary_text
+  
+      em = EmailMessage()
+      em['From'] = email_sender
+      em['To'] = email_receiver
+      em['Subject'] = subject
+      em.set_content(body)
+  
+      context = ssl.create_default_context()
+  
+      """try:
+          with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+              smtp.set_debuglevel(1)  # Enable SMTP debugging
+              smtp.login(email_sender, email_password)
+              smtp.sendmail(email_sender, email_receiver, em.as_string())
           st.write("Email sent successfully!")
+      except Exception as e:
+          st.error(f"Error sending email: {str(e)}")"""
+        
+      with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
+        smtp.login(email_sender, email_password)
+        smtp.sendmail(email_sender, email_receiver, em.as_string())
+        st.write("Email sent successfully!")
     else:
       st.write('Transcribe first!')
 
