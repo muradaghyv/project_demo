@@ -63,7 +63,7 @@ def main():
     txt_trans = st.session_state['clean']
     summary_text = st.session_state['summary']
     st.write('Choose an option:')
-    option = st.selectbox('Options:', ('-', 'Show transcription in raw format', 'Show transcription in a neater format', 'Show summary', 'Send summary text'))
+    option = st.selectbox('Options:', ('-', 'Show transcription in a raw format', 'Show transcription in a neater format', 'Show summary', 'Send summary text'))
     if option == 'Show transcription in a raw format':
       st.write(var2)
     elif option == 'Show transcription in a neater format':
