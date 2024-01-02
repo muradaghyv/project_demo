@@ -51,7 +51,11 @@ def main():
     option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
   
     txt_sum = var2.split('\\n')
-      
+
+    st.session_state['summary'] = summary_text
+    st.session_state['transciption'] = var2
+
+  if 'transcription' in st.session_state:
     if option == 'Show transcription':
         #st.write(var2)
         st.write('Hello')
@@ -84,6 +88,8 @@ def main():
           smtp.login(email_sender, email_password)
           smtp.sendmail(email_sender, email_receiver, em.as_string())
           st.write("Email sent successfully!")
+    else:
+      st.write('Transcribe first!')
 
 
 if __name__ == "__main__":
