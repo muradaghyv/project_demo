@@ -50,7 +50,7 @@ def main():
     st.session_state['summary'] = summary_text
     st.session_state['transciption'] = var2
   
-
+def transcribing():
   if 'transcription' in st.session_state:
     # Show transcription or send summary text
     st.write('Choose an option:')
@@ -93,3 +93,4 @@ def main():
 
 if __name__ == "__main__":
   main()
+  
