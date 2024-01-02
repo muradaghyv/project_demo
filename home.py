@@ -48,7 +48,7 @@ def main():
 
     # Show transcription or send summary text
     st.write('Choose an option:')
-    option = st.selectbox('Option', ('Show transcription', 'Send summary text'))
+    option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
   
     txt_sum = var2.split('\\n')
       
