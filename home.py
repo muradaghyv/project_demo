@@ -45,17 +45,16 @@ def main():
     summarizer = pipeline("summarization", model="Falconsai/text_summarization")
     t = summarizer(var2, max_length=230, min_length=30, do_sample=False)
     summary_text = t[0]['summary_text']
-
-    # Show transcription or send summary text
-    st.write('Choose an option:')
-    option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
-  
     txt_sum = var2.split('\\n')
 
     st.session_state['summary'] = summary_text
     st.session_state['transciption'] = var2
+  
 
   if 'transcription' in st.session_state:
+    # Show transcription or send summary text
+    st.write('Choose an option:')
+    option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
     if option == 'Show transcription':
         #st.write(var2)
       st.write('Hello')
