@@ -12,7 +12,6 @@ import subprocess
 
 subprocess.run(["pip", "install", "datasets", "llama_hub", "llama_index", "youtube_transcript_api"])
 
-
 def upload_file():
   uploaded_file = st.file_uploader("Choose a file")
   from youtube_transcript_api import TranscriptsDisabled
@@ -40,31 +39,33 @@ def main():
   if st.button("Transcribe"):
     progress_text = 'Transcibing . . .'
     my_bar = st.sidebar.progress(0, text = progress_text)
-    for percent_complete in range(100):
+    for percent_complete in range(300):
       time.sleep(0.01)
       my_bar.progress(percent_complete+1, text = progress_text)
     my_bar.empty()
     loader = YoutubeTranscriptReader()
     documents = loader.load_data(ytlinks=[youtube_link])
     var = str(documents).split('text')
-    var2 = var[1][2:-1]
+    var2 = var[1][2:-43]
     summarizer = pipeline("summarization", model="Falconsai/text_summarization")
     t = summarizer(var2, max_length=230, min_length=30, do_sample=False)
     summary_text = t[0]['summary_text']
-    txt_sum = var2.split('\\n')
+    txt_trans = var2.split('\\n')
     st.success('Trancription and summarization is done!')
 
     st.session_state['summary'] = summary_text
     st.session_state['transcription'] = var2
-  
+    
+  # Show transcription or send summary text
   if 'transcription' in st.session_state:
-    var2 = st.session_state['transcription']
+    txt_trans = st.session_state['transcription']
     summary_text = st.session_state['summary']
     st.write('Choose an option:')
-    option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
+    option = st.selectbox('Options:', ('-', 'Show transcription', 'Show summary', 'Send summary text'))
     if option == 'Show transcription':
-      st.write(var2)
-      #st.write('Hello')
+      st.write(txt_trans)
+    elif option == 'Show summary':
+      st.write(summary_text)
     elif option == 'Send summary text':
       email_sender = 'agayev.m2002@gmail.com'
       email_password = 'aaku gufo lswj ekqx'
@@ -89,7 +90,6 @@ def main():
           st.write("Email sent successfully!")
       except Exception as e:
           st.error(f"Error sending email: {str(e)}")
-    # Show transcription or send summary text
 
         
       #with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
