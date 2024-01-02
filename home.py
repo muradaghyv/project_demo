@@ -47,14 +47,14 @@ def main():
     summary_text = t[0]['summary_text']
 
     # Show transcription or send summary text
-    st.write("Choose an option:")
-    option = st.selectbox('Option', ("Show transcription", "Send summary text"))
+    st.write('Choose an option:')
+    option = st.selectbox('Option', ('Show transcription', 'Send summary text'))
   
     txt_sum = var2.split('\\n')
       
-    if option == "Show transcription":
+    if option == 'Show transcription':
       st.write(var2)
-    elif option == "Send summary text":
+    elif option == 'Send summary text':
       email_sender = 'agayev.m2002@gmail.com'
       email_password = 'aaku gufo lswj ekqx'
       email_receiver = 'murad.02.mm@gmail.com'
