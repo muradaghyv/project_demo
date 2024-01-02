@@ -54,15 +54,19 @@ def main():
     st.success('Trancription and summarization is done!')
 
     st.session_state['summary'] = summary_text
-    st.session_state['transcription'] = txt_trans
+    st.session_state['transcription'] = var2
+    st.session_state['clean'] = txt_trans
     
   # Show transcription or send summary text
   if 'transcription' in st.session_state:
-    txt_trans = st.session_state['transcription']
+    var2 = st.session_state['transcription']
+    txt_trans = st.session_state['clean']
     summary_text = st.session_state['summary']
     st.write('Choose an option:')
-    option = st.selectbox('Options:', ('-', 'Show transcription', 'Show summary', 'Send summary text'))
-    if option == 'Show transcription':
+    option = st.selectbox('Options:', ('-', 'Show transcription in raw format', 'Show transcription in a neater format', 'Show summary', 'Send summary text'))
+    if option == 'Show transcription in a raw format':
+      st.write(var2)
+    elif option == 'Show transcription in a neater format':
       st.write(txt_trans)
     elif option == 'Show summary':
       st.write(summary_text)
