@@ -54,7 +54,7 @@ def main():
     st.success('Trancription and summarization is done!')
 
     st.session_state['summary'] = summary_text
-    st.session_state['transcription'] = var2
+    st.session_state['transcription'] = txt_trans
     
   # Show transcription or send summary text
   if 'transcription' in st.session_state:
