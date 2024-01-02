@@ -54,6 +54,12 @@ def main():
     txt_sum = var2.split('\\n')
     st.success('Trancription and summarization is done!')
     
+
+
+    st.session_state['summary'] = summary_text
+    st.session_state['transcription'] = var2
+  
+  if 'transcription' in st.session_state:
     st.write('Choose an option:')
     option = st.selectbox('Options:', ('-', 'Show transcription', 'Send summary text'))
     if option == 'Show transcription':
@@ -83,11 +89,6 @@ def main():
           st.write("Email sent successfully!")
       except Exception as e:
           st.error(f"Error sending email: {str(e)}")
-
-    #st.session_state['summary'] = summary_text
-    #st.session_state['transcription'] = var2
-  
-  #if 'transcription' in st.session_state:
     # Show transcription or send summary text
 
         
