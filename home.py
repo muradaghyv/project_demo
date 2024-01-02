@@ -46,11 +46,11 @@ def main():
     t = summarizer(var2, max_length=230, min_length=30, do_sample=False)
     summary_text = t[0]['summary_text']
 
-    # Show transcription or send summary text
-    st.write("Choose an option:")
-    option = st.selectbox("Options", ["Show transcription", "Send summary text"])
+  # Show transcription or send summary text
+  st.write("Choose an option:")
+  option = st.selectbox("Options", ["Show transcription", "Send summary text"])
 
-    txt_sum = var2.split('\\n')
+  txt_sum = var2.split('\\n')
     
   if option == "Show transcription":
     st.write(txt_sum)
