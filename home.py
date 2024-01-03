@@ -1,5 +1,3 @@
-# prompt: Create a streamlit app with a button to upload a youtube link, after uploading link, one button for transcription process. Then 2 options are popped up: showing transcription or sending summary text of that transcription. Do all these processes according to this notebook and these codes
-
 import streamlit as st
 from email.message import EmailMessage
 import ssl
