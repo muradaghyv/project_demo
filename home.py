@@ -14,11 +14,11 @@ def upload_file():
   uploaded_file = st.file_uploader("Choose a file")
   from youtube_transcript_api import TranscriptsDisabled
 
-  try:
+  """try:
       transcripts = YouTubeTranscriptApi.get_transcript(video_id)
   except TranscriptsDisabled:
       print(f"Transcripts are disabled for the video with ID: {video_id}")
-      transcripts = []
+      transcripts = []"""
     
   if uploaded_file is not None:
     # To read file as bytes:
@@ -28,6 +28,12 @@ def upload_file():
 
 def main():
   st.title("YouTube Transcription and Summarization")
+  
+  with open('password.txt', 'r') as file:
+      # Read the entire content of the file
+      file_content = file.read()
+    
+  password = file_content
 
   # Upload YouTube link
   st.write("Upload a YouTube link:")
@@ -63,44 +69,36 @@ def main():
     st.write('Choose an option:')
     option = st.selectbox('Options:', ('-', 'Show transcription in a raw format', 'Show transcription in a neater format', 'Show summary', 'Send summary text'))
     if option == 'Show transcription in a raw format':
-      st.write(var2)
+        st.write(var2)
     elif option == 'Show transcription in a neater format':
-      st.write(txt_trans)
+        st.write(txt_trans)
     elif option == 'Show summary':
-      st.write(summary_text)
+        st.write(summary_text)
     elif option == 'Send summary text':
-      email_sender = 'agayev.m2002@gmail.com'
-      email_password = 'aaku gufo lswj ekqx'
-      email_receiver = 'murad.02.mm@gmail.com'
+        receiver = st.text_input('Input your mail address: ')
+        email_sender = 'agayev.m2002@gmail.com'
+        email_password = password
+        email_receiver = receiver
   
-      subject = 'Youtube Transcription'
-      body = summary_text
-  
-      em = EmailMessage()
-      em['From'] = email_sender
-      em['To'] = email_receiver
-      em['Subject'] = subject
-      em.set_content(body)
-  
-      context = ssl.create_default_context()
-  
-      try:
-          with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-              smtp.set_debuglevel(1)  # Enable SMTP debugging
-              smtp.login(email_sender, email_password)
-              smtp.sendmail(email_sender, email_receiver, em.as_string())
-          st.write("Email sent successfully!")
-      except Exception as e:
-          st.error(f"Error sending email: {str(e)}")
-
+        subject = 'Youtube Transcription'
+        body = summary_text
         
-      #with smtplib.SMTP_SSL('smtp.gmail.com', 465, context = context) as smtp:
-        #smtp.login(email_sender, email_password)
-        #smtp.sendmail(email_sender, email_receiver, em.as_string())
-        #st.write("Email sent successfully!")
-    #else:
-      #st.write('Transcribe first!')
-
+        em = EmailMessage()
+        em['From'] = email_sender
+        em['To'] = email_receiver
+        em['Subject'] = subject
+        em.set_content(body)
+        
+        context = ssl.create_default_context()
+        
+        try:
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+                smtp.set_debuglevel(1)  # Enable SMTP debugging
+                smtp.login(email_sender, email_password)
+                smtp.sendmail(email_sender, email_receiver, em.as_string())
+            st.write("Email sent successfully!")
+        except Exception as e:
+            st.error(f"Error sending email: {str(e)}")
 
 if __name__ == "__main__":
   main()
