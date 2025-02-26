@@ -76,7 +76,7 @@ def main():
     # Try to read password file
     try:
     # First try to get from Streamlit secrets (for cloud deployment)
-      password = st.secrets["email"]["password"]
+        password = st.secrets["email"]["password"]
     except Exception:
         try:
             # Fall back to local file (for local development)
